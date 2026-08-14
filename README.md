@@ -38,8 +38,8 @@ Use this mode for a paper walkthrough, tutorial, critical reading, or related-wo
 Clone the repository and link the skill directory into Codex:
 
 ```bash
-git clone https://github.com/DELONG-L/research-presentation-skill.git
-cd research-presentation-skill
+git clone https://github.com/DELONG-L/Research-Presentation-Skill.git
+cd Research-Presentation-Skill
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
 ln -s "$(pwd)/research-presentation" "${CODEX_HOME:-$HOME/.codex}/skills/research-presentation"
 ```

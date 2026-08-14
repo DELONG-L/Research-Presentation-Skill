@@ -38,8 +38,8 @@ Narrative Gate 已直接集成在仓库中，不依赖用户另外安装 `grilli
 克隆仓库，并把 Skill 目录链接到 Codex：
 
 ```bash
-git clone https://github.com/DELONG-L/research-presentation-skill.git
-cd research-presentation-skill
+git clone https://github.com/DELONG-L/Research-Presentation-Skill.git
+cd Research-Presentation-Skill
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
 ln -s "$(pwd)/research-presentation" "${CODEX_HOME:-$HOME/.codex}/skills/research-presentation"
 ```
