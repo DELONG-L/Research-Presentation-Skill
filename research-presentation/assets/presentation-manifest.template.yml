@@ -1,0 +1,35 @@
+schema_version: 1
+presentation_id: "{{SLUG}}"
+title: "{{TITLE}}"
+input_mode: "{{INPUT_MODE}}"
+created_at: "{{DATE}}"
+updated_at: "{{DATE}}"
+evidence_cutoff: "{{DATE}}"
+
+source:
+  project_root: "{{PROJECT_ROOT}}"
+  source_revision: "{{SOURCE_REVISION}}"
+  pdf_path: "{{PDF_PATH}}"
+  pdf_sha256: "{{PDF_SHA256}}"
+
+narrative_contract:
+  required: {{NARRATIVE_REQUIRED}}
+  path: "{{NARRATIVE_PATH}}"
+  status: "{{NARRATIVE_STATUS}}"
+
+story_contract:
+  one_sentence_pitch: "TODO"
+  primary_claim: "TODO"
+  prohibited_claims: []
+
+slides:
+  - number: 1
+    title: "{{TITLE}}"
+    role: "opening and method identity"
+    claim_ids: []
+
+claim_ledger: []
+
+citation_registry: {}
+
+asset_registry: []
