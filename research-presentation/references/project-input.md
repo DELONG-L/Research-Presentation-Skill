@@ -38,9 +38,9 @@ Use completed and frozen records for visible quantitative claims. If two records
 
 Create:
 
-- `NARRATIVE-CONTRACT.md`: frozen project packaging and claim boundary;
+- `NARRATIVE-CONTRACT.md`: proposed narrative and claim boundary, `draft` by default; reuse an existing current frozen record when available;
 - `presentation-manifest.yml`: source, claim, slide, citation, and asset provenance;
 - `LANGUAGE-AUDIT.md`: canonical terminology, ambiguity, and claim-strength review;
 - `index.html` plus local `assets/`.
 
-Run the Narrative Gate before creating the latter three unless a current frozen contract already exists.
+Create these artifacts within the authorized presentation task. A draft narrative contract is sufficient to begin and deliver a reviewable deck. Use `narrative-gate.md` only for an explicit interview-first request or a consequential unresolved narrative choice; do not require confirmation for routine drafting.

@@ -25,7 +25,7 @@ Unless the user asks for another angle, organize the presentation as:
 7. limitations, unsupported leaps, and open questions;
 8. concise takeaway.
 
-Use the Narrative Gate when the user requests a new packaging, adversarial critique, or venue-specific pitch instead of a faithful walkthrough.
+For new packaging, critique, or a venue-specific pitch, use the stated audience and evidence to prepare a reviewable draft. Use the optional Narrative Gate only if the user asks to discuss first or an unresolved choice would materially change the result.
 
 ## Page-Level Provenance
 

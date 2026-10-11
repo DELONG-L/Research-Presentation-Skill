@@ -52,7 +52,7 @@ Do not label an adapted variant as though the cited authors proposed it.
 
 - presentation ID, title, input mode, creation/update date, and evidence cutoff;
 - source revision or PDF digest;
-- frozen story contract summary for project mode;
+- narrative contract summary and its actual draft/frozen status for project mode;
 - slide number, title, argumentative role, and claim IDs;
 - claim ledger with evidence roles and exact source locations;
 - citation registry;

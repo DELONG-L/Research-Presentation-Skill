@@ -13,8 +13,8 @@
 ## 核心能力
 
 - 支持研究项目目录和单篇 PDF 两种输入模式。
-- 项目模式强制执行逐题确认的 **Narrative Gate（叙事门禁）**。
-- 制作演示前，将研究包装、claim、术语和故事线冻结到 `NARRATIVE-CONTRACT.md`。
+- 项目模式默认完成可审阅草稿；用户要求先讨论或存在关键叙事歧义时，使用 **Narrative Gate（叙事确认流程）**。
+- 将拟定的结论、术语和故事线记录到草稿状态的 `NARRATIVE-CONTRACT.md`；只有用户实际确认后才标记为冻结。
 - 在 `presentation-manifest.yml` 中记录可见结论、数字、图表、引用和资源来源。
 - 输出不需要构建步骤、可直接打开的交互式 HTML 演示。
 - 强制表头和单元格单行显示，并检查底纹、方法突出与缩写解释。
@@ -27,7 +27,7 @@ Narrative Gate 已直接集成在仓库中，不依赖用户另外安装 `grilli
 
 ### 项目目录
 
-适用于组会、研究进度汇报、投稿定位汇报和答辩型演示。Skill 会先从项目中调查事实，再一次只询问一个研究决策。只有用户明确确认并冻结叙事契约后，才会生成正式演示。
+适用于组会、研究进度汇报、投稿定位汇报和答辩型演示。Skill 会先检查项目事实，记录拟定的叙事并制作可审阅草稿。只有用户明确要求先讨论，或存在影响正确性的关键选择时，才使用叙事确认流程；普通草稿不要求冻结契约。
 
 ### 单篇 PDF
 
@@ -97,10 +97,12 @@ python3 research-presentation/scripts/scaffold_presentation.py ./presentation \
 
 ```bash
 python3 research-presentation/scripts/validate_narrative_contract.py \
-  presentation/NARRATIVE-CONTRACT.md --require-frozen
+  presentation/NARRATIVE-CONTRACT.md
 
 python3 research-presentation/scripts/validate_presentation.py presentation
 ```
+
+只有本次交付明确要求用户确认叙事时，才添加 `--require-frozen`。
 
 静态校验不能替代视觉验收。需要在桌面、紧凑型笔记本和手机竖屏尺寸下逐页检查演示与详情弹窗。
 
@@ -120,7 +122,7 @@ Skill 的脚本不依赖第三方 Python 包。PDF 提取、浏览器截图、�
 ## 设计原则
 
 - 能从来源中查到的事实由 Skill 调查；研究决策由用户确认。
-- 项目包装未确认前，不生成正式演示。
+- 普通项目演示可以使用草稿叙事契约；用户明确要求先批准再制作时，遵守该要求。
 - 证据等级和负面结果必须保持可见。
 - 不把项目自行适配的 baseline 说成原论文提出的方法。
 - 视觉包装不能覆盖证据来源或 claim 边界。

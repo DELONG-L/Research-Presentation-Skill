@@ -13,7 +13,7 @@ confirmed_at: ""
 
 ## One-Sentence Pitch
 
-<!-- Replace with the frozen one-sentence research pitch. -->
+<!-- Record the evidence-grounded proposed pitch; draft status does not imply user confirmation. -->
 
 ## Audience And Purpose
 

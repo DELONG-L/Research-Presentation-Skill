@@ -13,8 +13,8 @@ Narrative Gate → Evidence Map → Storyboard → Presentation Build → Visual
 ## What It Does
 
 - Accepts either a research project directory or one academic PDF.
-- Runs a mandatory, one-question-at-a-time **Narrative Gate** for project presentations.
-- Freezes the agreed packaging, claims, terminology, and storyline in `NARRATIVE-CONTRACT.md` before building slides.
+- Builds a reviewable project-mode draft by default; uses the **Narrative Gate** when discussion-first work is requested or a consequential narrative choice remains unresolved.
+- Records the proposed claims, terminology, and storyline in a draft `NARRATIVE-CONTRACT.md`; freezes it only after actual user confirmation.
 - Tracks visible claims, numbers, figures, citations, and assets in `presentation-manifest.yml`.
 - Produces a self-contained interactive HTML deck with no required build step.
 - Enforces single-line table headers/cells, meaningful shading, proposed-method emphasis, and abbreviation disclosure.
@@ -27,7 +27,7 @@ The Narrative Gate is built into this repository. It does not require a separate
 
 ### Project directory
 
-Use this mode for a group meeting, research update, venue pitch, or defense-style talk. The skill first inspects project facts, then interviews the user about research decisions one at a time. It will not generate the formal presentation until the user confirms and freezes the narrative contract.
+Use this mode for a group meeting, research update, venue pitch, or defense-style talk. The skill first inspects project facts, records the proposed narrative, and builds a reviewable draft. Use the optional Narrative Gate for an explicit interview-first request or a consequential unresolved choice; ordinary drafting does not require a frozen contract.
 
 ### Single PDF
 
@@ -97,10 +97,12 @@ The scaffold deliberately contains visible placeholders. Replace them with sourc
 
 ```bash
 python3 research-presentation/scripts/validate_narrative_contract.py \
-  presentation/NARRATIVE-CONTRACT.md --require-frozen
+  presentation/NARRATIVE-CONTRACT.md
 
 python3 research-presentation/scripts/validate_presentation.py presentation
 ```
+
+Add `--require-frozen` only when this delivery explicitly requires a confirmed narrative.
 
 Static validation does not replace visual inspection. Open the deck and inspect every slide and dialog at desktop, compact laptop, and mobile portrait sizes.
 
@@ -120,7 +122,7 @@ The skill has no required Python package dependencies. PDF extraction, browser s
 ## Design Principles
 
 - Facts are discovered from sources; research decisions belong to the user.
-- Project packaging must be confirmed before presentation generation.
+- Ordinary project-mode delivery can use a draft narrative; explicit approval-before-building instructions remain binding.
 - Evidence roles and negative results remain visible.
 - Adapted baselines are never attributed to the original authors.
 - Presentation polish cannot override provenance or claim boundaries.

@@ -143,6 +143,28 @@ class ContractValidatorTests(unittest.TestCase):
         self.assertEqual(metadata["status"], "draft")
         self.assertTrue(errors)
 
+    def test_accepts_complete_draft_without_confirmation(self):
+        draft = VALID_CONTRACT.replace("status: frozen", "status: draft")
+        draft = draft.replace('confirmed_by: "Research lead"\n', "")
+        draft = draft.replace('confirmed_at: "2026-08-14"\n', "")
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "NARRATIVE-CONTRACT.md"
+            path.write_text(draft, encoding="utf-8")
+            errors, warnings, metadata = contract_validator.validate(path, False)
+            self.assertEqual(errors, [])
+            self.assertEqual(warnings, [])
+            self.assertEqual(metadata["status"], "draft")
+
+    def test_requires_confirmation_when_freeze_is_requested(self):
+        unconfirmed = VALID_CONTRACT.replace('confirmed_by: "Research lead"\n', "")
+        unconfirmed = unconfirmed.replace('confirmed_at: "2026-08-14"\n', "")
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "NARRATIVE-CONTRACT.md"
+            path.write_text(unconfirmed, encoding="utf-8")
+            errors, _, _ = contract_validator.validate(path, True)
+            self.assertTrue(any("confirmed_by" in error for error in errors))
+            self.assertTrue(any("confirmed_at" in error for error in errors))
+
 
 class DeckValidatorTests(unittest.TestCase):
     def make_deck(self, root: Path, html: str = VALID_HTML) -> None:

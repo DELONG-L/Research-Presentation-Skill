@@ -1,82 +1,54 @@
-# Narrative Gate
+# Optional Narrative Gate
 
-Use this protocol before creating or materially restructuring a project-mode presentation. The gate resolves research decisions; it is not a questionnaire about facts already present in the workspace.
+Default to preparing an evidence-grounded, reviewable deck from the user's
+request and available project material. A draft narrative contract is enough
+for ordinary work. Do not interview the user merely because the input is a
+project directory, critique, or venue-specific presentation.
 
-## Entry Conditions
+## When to ask
 
-1. Inspect the project first using `project-input.md`.
-2. Summarize the evidence state internally: completed, exploratory, negative, pending, and unknown.
-3. Load any existing `NARRATIVE-CONTRACT.md`.
-4. If the contract is frozen and the evidence has not materially changed, reuse it. If the method, main claim, venue, deployment story, or decisive evidence changed, mark it `stale` and reopen only affected decisions.
+Use this gate when the user explicitly requests discussion/confirmation before
+building, or when an unresolved choice about audience, main conclusion, or
+research positioning would materially change the result and cannot be resolved
+from the sources and current instructions. Ask about that choice only; continue
+independent authorized work. An explicit instruction to wait before building
+does prohibit building until the user releases it.
 
-## Interview Rules
+Read project facts and any existing `NARRATIVE-CONTRACT.md` first. Reuse current
+decisions and valid authorization. Do not ask for facts available in the files.
+For routine layout, wording, and implementation choices, use judgment and
+proceed. Record material working assumptions as assumptions, not agreed facts.
 
-- Ask exactly one decision question per turn and wait for the answer.
-- Include a recommended answer and a concrete reason with every question.
-- Challenge unsupported ambition, vague novelty, hidden trust assumptions, and claims stronger than the evidence.
-- Resolve upstream decisions before downstream wording. Do not ask for slide count or color before the research story is stable.
-- Look up project facts instead of asking the user to recall them.
-- Do not create, rewrite, or restyle the presentation until the user explicitly confirms shared understanding.
+## Interview-first mode
 
-## Decision Order
+When the user chooses an interview, ask focused decision questions with a
+recommended answer and reason. Use one question at a time when the user prefers
+that interaction. Skip settled decisions; do not require all branches of a
+fixed questionnaire. Relevant topics may include audience, primary claim,
+evidence roles, nearest work, method identity, threat boundaries, and storyline.
 
-Walk this dependency order. Skip only decisions already explicit and current.
+## Record status honestly
 
-1. **Purpose and audience:** venue, meeting type, audience expertise, and desired decision after the talk.
-2. **Core problem:** the concrete failure or unmet need, not a method-shaped problem statement.
-3. **Deployment scenario:** actors, data flows, timing, and what help the method provides.
-4. **Trust and threat boundary:** trusted and untrusted inputs, private access, adversary capability, and exclusions.
-5. **Research gap:** nearest work, what it already solves, and the exact remaining gap.
-6. **Method identity:** input, output, decision granularity, algorithmic components, fallback, and name.
-7. **Novelty thesis:** the smallest defensible reason the method is more than an assembly of known components.
-8. **Primary claim:** one sentence containing setting, intervention, measured effect, and boundary.
-9. **Contribution list:** problem/formalization, method, evidence, and boundary contributions without duplication.
-10. **Evidence roles:** which experiments are primary, confirmatory, supporting, exploratory, negative, or pending.
-11. **Failure interpretation:** what negative results mean and which broader claims they prohibit.
-12. **Comparison framing:** external methods, adaptations, fairness conditions, and strongest reviewer objection.
-13. **Terminology:** canonical method name, abbreviations, symbols, datasets, metrics, and prohibited synonyms.
-14. **Storyline:** the causal sequence from deployment pressure to problem, method, evidence, boundaries, and next step.
+- Create a new project contract as `status: draft`. Populate the useful template
+  fields from evidence and mark unsupported novelty or effects as unestablished.
+  Use a concrete `not applicable` explanation when a field does not apply.
+- Leave `confirmed_by` and `confirmed_at` empty until the user actually confirms
+  this narrative. A finished deck can have a draft narrative contract.
+- If a current contract is frozen, reuse it. When new evidence materially
+  changes its conclusion, boundary, or positioning, preserve the old record or
+  version, mark the old framing stale, and prepare a revised draft. Ask only
+  about affected consequential decisions; cosmetic edits do not reopen a gate.
+- If the user requests freezing or an applicable contract requires it, present
+  the concrete pitch, claim boundaries, and storyline for confirmation. Reuse a
+  confirmation already given for that exact narrative; do not ask twice.
 
-## Question Pattern
+Validate ordinary drafts with:
 
-Use this compact structure:
-
-```text
-Decision: <one decision only>
-
-Question: <specific question>
-
-Recommended answer: <one concrete option>
-Reason: <why it best matches the evidence and audience>
-Consequence: <what this choice enables or rules out>
+```bash
+python3 scripts/validate_narrative_contract.py path/to/NARRATIVE-CONTRACT.md
 ```
 
-Do not present several unrelated questions as a menu. Alternatives may be mentioned only when they clarify the current decision.
-
-## Freeze Protocol
-
-After all dependencies are resolved:
-
-1. Draft `NARRATIVE-CONTRACT.md` from `assets/narrative-contract.template.md`.
-2. Show the user the one-sentence pitch, method identity, primary claim, contribution list, prohibited claims, evidence roles, and proposed storyline.
-3. Ask one final question: whether this records the shared understanding and may be frozen.
-4. Only after explicit confirmation, set `status: frozen`, fill `confirmed_by` and `confirmed_at`, and run:
-
-   ```bash
-   python3 scripts/validate_narrative_contract.py NARRATIVE-CONTRACT.md --require-frozen
-   ```
-
-5. If validation fails, repair the contract before storyboarding.
-
-## Reopening The Gate
-
-Mark the contract `stale` when new evidence materially changes any of these:
-
-- the main conclusion or its confidence;
-- the deployment or threat model;
-- the method's actual decision rule;
-- the novelty position against nearest work;
-- a primary comparison or failure boundary;
-- the target venue or audience.
-
-Cosmetic edits, additional citations that do not change positioning, and exact reruns consistent with the frozen conclusion do not require a full restart.
+For an actually confirmed narrative, set `status: frozen`, record who confirmed
+it and when, and validate with `--require-frozen`. Do not mark a narrative frozen
+because a validator needs that state. A remaining narrative question blocks
+only the affected content unless the user explicitly requested a full pause.
