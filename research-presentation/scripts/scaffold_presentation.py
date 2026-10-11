@@ -130,7 +130,8 @@ def main() -> int:
 
     print(f"Created {args.input_mode} presentation scaffold at {output}")
     if is_project:
-        print("Freeze NARRATIVE-CONTRACT.md before replacing slide placeholders.")
+        print("Complete the draft NARRATIVE-CONTRACT.md and replace slide placeholders.")
+        print("Freeze the narrative only when this delivery explicitly requires confirmation.")
     return 0
 
 

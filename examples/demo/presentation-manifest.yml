@@ -1,0 +1,40 @@
+schema_version: 1
+presentation_id: workflow-demo
+title: From evidence to a clear research story
+input_mode: project
+source:
+  project_root: ../..
+  source_revision: f2cd81b
+  evidence_cutoff: '2026-10-11'
+narrative_contract:
+  required: true
+  path: NARRATIVE-CONTRACT.md
+  status: draft
+slides:
+- number: 1
+  title: From evidence to a clear research story
+  claim_ids: []
+- number: 2
+  title: Give every slide an argumentative job
+  claim_ids:
+  - C1
+- number: 3
+  title: Keep each claim connected to its source
+  claim_ids:
+  - C2
+  - C3
+claim_ledger:
+- id: C1
+  claim: Each slide has one argumentative job.
+  source: ../../research-presentation/SKILL.md#build-workflow
+  role: workflow guidance
+- id: C2
+  claim: Ordinary project delivery can use a draft narrative.
+  source: ../../research-presentation/SKILL.md#build-workflow
+  role: workflow guidance
+- id: C3
+  claim: The HTML scaffold uses no external runtime assets.
+  source: ../../research-presentation/assets/html-deck/index.html
+  role: source inspection
+citation_registry: {}
+asset_registry: []
