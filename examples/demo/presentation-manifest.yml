@@ -1,11 +1,12 @@
 schema_version: 1
+updated: '2026-10-18'
 presentation_id: workflow-demo
 title: From evidence to a clear research story
 input_mode: project
 source:
   project_root: ../..
-  source_revision: f2cd81b
-  evidence_cutoff: '2026-10-11'
+  source_revision: b0ecf69449a707b6457a78ed7e5803de443d24d2
+  evidence_cutoff: '2026-10-18'
 narrative_contract:
   required: true
   path: NARRATIVE-CONTRACT.md
@@ -13,16 +14,20 @@ narrative_contract:
 slides:
 - number: 1
   title: From evidence to a clear research story
+  argumentative_role: introduce the software example
   claim_ids: []
 - number: 2
   title: Give every slide an argumentative job
   claim_ids:
   - C1
+  argumentative_role: explain question, mechanism, and evidence through selectable roles
 - number: 3
   title: Keep each claim connected to its source
   claim_ids:
   - C2
   - C3
+  - C4
+  argumentative_role: connect capabilities to primary sources and scope
 claim_ledger:
 - id: C1
   claim: Each slide has one argumentative job.
@@ -36,5 +41,20 @@ claim_ledger:
   claim: The HTML scaffold uses no external runtime assets.
   source: ../../research-presentation/assets/html-deck/index.html
   role: source inspection
-citation_registry: {}
-asset_registry: []
+- id: C4
+  claim: A frozen narrative requires explicit user confirmation.
+  source: ../../research-presentation/references/narrative-gate.md
+  role: workflow guidance
+citation_registry:
+  S1: research-presentation/SKILL.md#build-workflow
+  S2: research-presentation/assets/html-deck/index.html
+  S3: research-presentation/references/narrative-gate.md
+asset_registry:
+  - id: storyboard
+    origin: native HTML and CSS in this example
+    purpose: interactive question-mechanism-evidence navigation
+    license: MIT
+known_boundaries:
+  - Software workflow guidance, not experimental evidence.
+  - No claim about scientific effectiveness or research novelty.
+  - Source links open public GitHub files; runtime assets remain local.

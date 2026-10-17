@@ -1,0 +1,57 @@
+name: Publish interactive examples
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - examples/demo/**
+      - research-presentation/**
+      - scripts/build_pages.py
+      - LICENSE
+      - .github/workflows/pages.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+      - name: Validate examples
+        run: |
+          python3 research-presentation/scripts/validate_presentation.py examples/demo
+          python3 research-presentation/scripts/validate_presentation.py examples/demo/zh
+          python3 research-presentation/scripts/validate_narrative_contract.py examples/demo/NARRATIVE-CONTRACT.md
+          python3 research-presentation/scripts/validate_narrative_contract.py examples/demo/zh/NARRATIVE-CONTRACT.md
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Package bilingual examples
+        run: python3 scripts/build_pages.py _site
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

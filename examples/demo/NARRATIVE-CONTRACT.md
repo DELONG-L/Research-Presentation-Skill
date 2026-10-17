@@ -3,8 +3,8 @@ schema_version: 1
 status: draft
 input_mode: project
 project_root: "../.."
-source_revision: "f2cd81b"
-evidence_cutoff: "2026-10-11"
+source_revision: "b0ecf69449a707b6457a78ed7e5803de443d24d2"
+evidence_cutoff: "2026-10-18"
 ---
 
 # Narrative Contract
@@ -51,7 +51,7 @@ The example describes workflow behavior. It does not establish empirical benefit
 
 ## Evidence Map
 
-C1 and C2 come from SKILL.md. C3 comes from the bundled HTML scaffold.
+C1 and C2 come from SKILL.md. C3 comes from the bundled HTML scaffold. C4 comes from the Narrative Gate.
 
 ## Terminology
 

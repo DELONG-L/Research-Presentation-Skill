@@ -1,0 +1,60 @@
+schema_version: 1
+updated: '2026-10-18'
+presentation_id: workflow-demo-zh
+title: 从证据出发，讲清研究故事
+input_mode: project
+source:
+  project_root: ../../..
+  source_revision: b0ecf69449a707b6457a78ed7e5803de443d24d2
+  evidence_cutoff: '2026-10-18'
+narrative_contract:
+  required: true
+  path: NARRATIVE-CONTRACT.md
+  status: draft
+slides:
+- number: 1
+  title: 从证据出发，讲清研究故事
+  argumentative_role: introduce the software example
+  claim_ids: []
+- number: 2
+  title: 每页一个论证任务
+  claim_ids:
+  - C1
+  argumentative_role: explain question, mechanism, and evidence through selectable roles
+- number: 3
+  title: 让每个结论都能找到来源
+  claim_ids:
+  - C2
+  - C3
+  - C4
+  argumentative_role: connect capabilities to primary sources and scope
+claim_ledger:
+- id: C1
+  claim: Each slide has one argumentative job.
+  source: ../../../research-presentation/SKILL.md#build-workflow
+  role: workflow guidance
+- id: C2
+  claim: Ordinary project delivery can use a draft narrative.
+  source: ../../../research-presentation/SKILL.md#build-workflow
+  role: workflow guidance
+- id: C3
+  claim: The HTML scaffold uses no external runtime assets.
+  source: ../../../research-presentation/assets/html-deck/index.html
+  role: source inspection
+- id: C4
+  claim: A frozen narrative requires explicit user confirmation.
+  source: ../../../research-presentation/references/narrative-gate.md
+  role: workflow guidance
+citation_registry:
+  S1: research-presentation/SKILL.md#build-workflow
+  S2: research-presentation/assets/html-deck/index.html
+  S3: research-presentation/references/narrative-gate.md
+asset_registry:
+  - id: storyboard
+    origin: native HTML and CSS in this example
+    purpose: interactive question-mechanism-evidence navigation
+    license: MIT
+known_boundaries:
+  - Software workflow guidance, not experimental evidence.
+  - No claim about scientific effectiveness or research novelty.
+  - Source links open public GitHub files; runtime assets remain local.

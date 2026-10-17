@@ -1,31 +1,41 @@
-<div align="center">
+# Research Presentation
 
-<h1>Research Presentation</h1>
-<p>Turn research projects and papers into evidence-grounded HTML talks.</p>
-<p><a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-333333" alt="MIT licence"></a></p>
-<p><a href="#get-started"><strong>Get started</strong></a> · <a href="docs/guide.md">User guide</a> · <a href="README.zh-CN.md">简体中文</a></p>
+Turn a research project or paper PDF into a standalone HTML talk, with a clear argument and claims traced to their sources.
 
-</div>
+**[▶ Open interactive demo](https://delong-l.github.io/Research-Presentation-Skill/)** · [Install the skill](#get-started) · [User guide](docs/guide.md) · [简体中文](README.zh-CN.md)
 
-## See the result
+<a href="#see-the-result"><img src="docs/previews/readme-cover-en.png" alt="Research Presentation: a clear story grounded in evidence. A conceptual storyboard connects question, mechanism, and evidence." width="1942"></a>
 
-[![Standalone research presentation example](docs/previews/demo.jpg)](examples/demo/index.html)
+[![MIT licence](https://img.shields.io/badge/license-MIT-333333)](LICENSE)
 
-A working deck demonstrating layout, navigation, and provenance without invented experimental results. Download the repository and open `examples/demo/index.html` directly to try it.
+## Start with your research
 
-## Choose your input
+- **A project directory** → A group-meeting talk, research update, or defense-style presentation built from the available evidence.
+- **A paper PDF** → A walkthrough of the question, method, evidence, and limitations, with references back to the paper.
+- **An existing deck and its sources** → Revised claims, consistent terminology, and clearer slides while preserving working interactions.
 
-| Your source | Presentation |
-|---|---|
-| Research project directory | Group meeting, progress talk, defense, or claim-evidence briefing |
-| One academic PDF | A faithful walkthrough of the question, mechanism, evidence, and limitations |
-| Existing deck and sources | A revision that checks claims, terminology, citations, and visual clarity |
+Each slide has a job in the argument. Figures, numbers, and comparisons stay connected to their sources; uncertainty and limitations remain visible.
 
-Project mode records a draft narrative and builds a reviewable deck by default. Use the Narrative Gate for an explicit discussion-first request or a consequential unresolved choice. Freeze a contract only after actual confirmation.
+<a id="see-the-result"></a>
+## See the working deck
 
-## Get started
+[![English interactive example: switch between question, mechanism, and evidence to explore each slide's argumentative role.](docs/previews/demo-en.png)](https://delong-l.github.io/Research-Presentation-Skill/)
 
-For a fresh installation:
+A three-slide example using the skill's own documentation as its source. Switch between argumentative roles, inspect the sources, and move through the slides with buttons or the keyboard. It presents no experimental findings.
+
+**[▶ Open the English interactive demo](https://delong-l.github.io/Research-Presentation-Skill/)**
+
+<details>
+<summary><strong>Prefer to try it offline?</strong></summary>
+
+[Download the repository ZIP](https://github.com/DELONG-L/Research-Presentation-Skill/archive/refs/heads/main.zip), extract it, and open `examples/demo/index.html` in a browser. The same example runs locally without a build step or external runtime assets.
+
+</details>
+
+<a id="get-started"></a>
+## Install and try a task
+
+For a **fresh installation** on macOS or Linux:
 
 ```bash
 git clone https://github.com/DELONG-L/Research-Presentation-Skill.git
@@ -34,15 +44,50 @@ mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
 ln -s "$(pwd)/research-presentation" "${CODEX_HOME:-$HOME/.codex}/skills/research-presentation"
 ```
 
-Preserve local changes if the skill is already installed. Copy the skill folder if symbolic links are unavailable. The [user guide](docs/guide.md) covers scaffolding, validation, and output files.
+If the skill is already installed, preserve local changes before replacing it. Copy the `research-presentation/` folder if symbolic links are unavailable. Open a new Codex task, provide your source directory, and ask:
 
 ```text
-Use $research-presentation to turn this project into a group-meeting talk.
-Build a reviewable draft from the available evidence and preserve claim boundaries.
+Use $research-presentation to
+turn this project into a
+group-meeting HTML talk.
+Build a reviewable draft from
+the available evidence and
+preserve claim boundaries.
 ```
 
-## What you receive
+<details>
+<summary><strong>Working from a PDF or revising a deck?</strong></summary>
 
-A standalone HTML deck, local assets, a source and claim manifest, and a terminology audit; project mode also includes a narrative contract. The deck needs no build step and supports keyboard navigation, touch gestures, and printing. Validation scripts require Python 3 with no third-party packages.
+**Explain a paper**
 
-[Skill instructions](research-presentation/SKILL.md) · [Working example](examples/demo/) · [Detailed guide](docs/guide.md) · [MIT licence](LICENSE)
+```text
+Use $research-presentation to
+explain this PDF as a 15-minute
+research talk. Trace claims and
+figures to the paper, and keep
+its limitations visible.
+```
+
+**Revise an existing talk**
+
+```text
+Use $research-presentation to
+revise this deck against its
+source records. Fix unsupported
+claims and inconsistent terms;
+preserve working navigation.
+```
+
+</details>
+
+## What comes with the talk
+
+- **An offline HTML deck** — `index.html` and local assets, with keyboard navigation, touch gestures, and printing.
+- **A source record** — `presentation-manifest.yml` maps claims, figures, numbers, and citations to their evidence.
+- **Narrative and terminology records** — `LANGUAGE-AUDIT.md` checks terms and claim strength; project mode also includes `NARRATIVE-CONTRACT.md`.
+
+Project mode builds a reviewable draft by default. The Narrative Gate supports an explicit discussion-first request or a consequential unresolved choice; the narrative is frozen only after actual user confirmation.
+
+The scaffold and validators use Python 3 with no third-party Python packages. See the [user guide](docs/guide.md) for commands, output structure, and checks.
+
+[Skill instructions](research-presentation/SKILL.md) · [English example source](examples/demo/index.html) · [Chinese example source](examples/demo/zh/index.html) · [Visual assets and sources](docs/visuals.md) · [MIT licence](LICENSE)

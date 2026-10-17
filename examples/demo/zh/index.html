@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="从研究问题出发，解释方法机制，用证据支撑结论。">
+  <meta name="theme-color" content="#18243c">
+  <title>从证据出发，讲清研究故事 · Research Presentation</title>
+  <style>
+    :root { color-scheme: light; --ink:#18243c; --muted:#59667b; --paper:#eff3fb; --white:#fff; --line:#ccd5e4; --blue:#315eac; --coral:#f38167; --navy:#18243c; }
+    * { box-sizing:border-box; }
+    html { background:var(--paper); }
+    body { margin:0; padding-bottom:80px; color:var(--ink); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; }
+    button,a { font:inherit; -webkit-tap-highlight-color:transparent; }
+    a { color:inherit; text-underline-offset:4px; }
+    button { cursor:pointer; }
+    button:focus-visible,a:focus-visible,[tabindex]:focus-visible { outline:3px solid var(--blue); outline-offset:5px; }
+    button:disabled { opacity:.3; cursor:default; }
+    button, .role-tab, .sheet { transition:background-color 150ms,color 150ms,border-color 150ms; }
+    h1,h2,h3,p { margin:0; }
+    h1 { font-size:68px; line-height:1.04; letter-spacing:-2.5px; font-weight:650; max-width:650px; text-wrap:balance; }
+    h2 { font-size:46px; line-height:1.12; letter-spacing:-1.5px; font-weight:650; text-wrap:balance; }
+    html[lang="zh-CN"] h1 { font-size:62px; line-height:1.18; letter-spacing:-1px; }
+    html[lang="zh-CN"] h2 { font-size:44px; line-height:1.24; letter-spacing:-.7px; }
+    .topbar { height:78px; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:0 52px; border-bottom:1px solid var(--line); }
+    .wordmark { display:flex; gap:12px; align-items:center; text-decoration:none; font-size:13px; font-weight:750; letter-spacing:1px; }
+    .mark { width:25px; height:25px; display:grid; gap:3px; transform:rotate(-8deg); }
+    .mark i { display:block; background:var(--coral); height:5px; }
+    .mark i:nth-child(2) { width:19px; } .mark i:nth-child(3) { width:13px; }
+    .top-actions { display:flex; align-items:center; gap:25px; font-size:13px; }
+    .language { display:flex; gap:9px; align-items:center; }
+    .language a { text-decoration:none; color:var(--muted); }
+    .language [aria-current] { color:var(--ink); font-weight:750; }
+    .language span { color:var(--line); }
+    .source-button { color:inherit; background:transparent; border:1px solid var(--line); padding:9px 13px; border-radius:4px; font-size:13px; }
+    .source-button:hover { background:#dfe7f5; }
+    .deck { min-height:calc(100svh - 158px); }
+    .slide { display:none; min-height:calc(100svh - 158px); }
+    .slide.is-active { display:flex; }
+    .slide-inner { width:min(1280px,calc(100% - 112px)); margin:auto; padding:40px 0; }
+    .two-column { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); align-items:center; gap:70px; }
+    .two-column > * { min-width:0; }
+    .eyebrow { color:var(--blue); font-size:12px; font-weight:750; letter-spacing:1.6px; text-transform:uppercase; margin-bottom:24px; }
+    .lede { color:var(--muted); font-size:19px; line-height:1.65; max-width:490px; margin-top:25px; }
+    .small-note { color:var(--muted); font-size:12px; line-height:1.65; }
+    .title-copy .small-note { margin-top:30px; max-width:420px; }
+    .text-link { display:inline-flex; align-items:center; gap:20px; border:0; border-bottom:1px solid currentColor; padding:0 0 7px; color:inherit; background:transparent; text-decoration:none; font-size:15px; font-weight:650; margin-top:26px; }
+    .storyboard { position:relative; padding:24px 20px; }
+    .storyboard::before { position:absolute; content:""; inset:0 38px 0 38px; border:1px solid #41516b; }
+    .storyboard-label { position:relative; color:#bbc7dc; background:var(--navy); padding:0 12px; display:inline-block; margin:0 0 24px 26px; font:11px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace; letter-spacing:1.3px; }
+    .sheet { position:relative; display:grid; grid-template-columns:46px 1fr 26px; gap:14px; align-items:center; width:calc(100% - 22px); border:0; border-radius:3px; background:var(--paper); color:var(--ink); padding:22px; text-align:left; text-decoration:none; box-shadow:7px 7px 0 #31425f; }
+    .sheet + .sheet { margin-top:18px; }
+    .sheet:nth-of-type(2) { margin-left:22px; }
+    .sheet:nth-of-type(3) { margin-left:8px; }
+    .sheet:hover { background:#fff; }
+    .sheet-number { color:var(--blue); font:14px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace; align-self:start; padding-top:3px; }
+    .sheet strong { display:block; font-size:23px; font-weight:650; }
+    .sheet small { display:block; color:var(--muted); font-size:12px; line-height:1.5; margin-top:4px; }
+    .sheet-arrow { font-size:23px; color:var(--blue); }
+    .sheet:last-child { border-left:5px solid var(--coral); padding-left:17px; }
+    .dark-slide { background:var(--navy); color:#f5f7ff; }
+    .dark-slide .eyebrow { color:var(--coral); }
+    .dark-slide .lede { color:#c5d0e4; }
+    .dark-slide .small-note { color:#b8c5db; }
+    .dark-slide .text-link { color:#fff; }
+    .dark-slide :focus-visible { outline-color:var(--coral); }
+    .roles-layout { grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr); gap:80px; }
+    .section-number { display:block; font:12px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace; color:var(--muted); margin-bottom:18px; }
+    .role-tabs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-bottom:1px solid var(--line); gap:10px; }
+    .role-tab { position:relative; border:0; background:transparent; color:var(--muted); text-align:left; padding:14px 0 18px; border-bottom:3px solid transparent; margin-bottom:-1px; }
+    .role-tab span { display:block; font:12px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace; margin-bottom:10px; }
+    .role-tab strong { font-size:20px; font-weight:650; }
+    .role-tab[aria-selected="true"] { color:var(--ink); border-color:var(--blue); }
+    .role-tab:last-child[aria-selected="true"] { border-color:#bd4d35; }
+    .role-tab:hover { color:var(--ink); }
+    .role-panel { padding:27px 0 0; min-height:316px; }
+    .role-panel[hidden] { display:none; }
+    .role-question { font-size:26px; line-height:1.25; letter-spacing:-.5px; font-weight:650; max-width:550px; }
+    .role-description { font-size:16px; line-height:1.7; color:var(--muted); max-width:510px; margin-top:16px; }
+    .explanation { margin-top:24px; display:grid; grid-template-columns:3px 1fr; gap:15px; }
+    .explanation::before { content:""; background:var(--coral); }
+    .explanation p { font-size:14px; line-height:1.6; }
+    .explanation strong { display:block; font-size:11px; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px; color:var(--blue); }
+    .mini-map { display:flex; gap:0; margin-top:28px; padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .mini-node { flex:1; font-size:12px; color:var(--muted); display:flex; align-items:center; gap:8px; }
+    .mini-node::before { content:""; width:7px; height:7px; flex-shrink:0; border:1px solid var(--muted); border-radius:50%; }
+    .mini-node.active { color:var(--ink); font-weight:750; }
+    .mini-node.active::before { background:var(--blue); border-color:var(--blue); }
+    .mini-node:not(:last-child)::after { content:"→"; margin-left:auto; margin-right:10px; color:var(--muted); }
+    .slide-source { display:flex; align-items:center; justify-content:space-between; gap:15px; padding-top:26px; margin-top:12px; border-top:1px solid var(--line); }
+    .inline-source { color:var(--blue); background:none; border:0; padding:0; font-size:12px; text-align:left; text-decoration:underline; text-underline-offset:4px; }
+    .evidence-layout { grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr); gap:65px; }
+    .table-wrap { overflow:auto; border:1px solid var(--line); background:var(--white); overscroll-behavior-x:contain; }
+    table { border-collapse:collapse; width:100%; font-size:14px; }
+    th,td { padding:20px 20px; text-align:left; white-space:nowrap; border-bottom:1px solid #e0e6ef; }
+    thead { background:#dfe7f5; }
+    th { font-size:11px; letter-spacing:.7px; text-transform:uppercase; color:#44516a; }
+    tbody tr:nth-child(even) { background:#f5f7fc; }
+    tbody tr:last-child td { border-bottom:0; }
+    td:first-child { font-weight:650; }
+    td a { color:var(--blue); text-decoration-thickness:1px; }
+    .boundary { border-left:3px solid var(--coral); padding-left:18px; margin-top:25px; font-size:14px; line-height:1.7; }
+    .boundary strong { display:block; margin-bottom:4px; }
+    .table-cue { color:var(--muted); font-size:11px; margin:9px 0 0; }
+    .reference-line { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-top:24px; font-size:12px; color:var(--blue); }
+    .footer { position:fixed; left:0; right:0; bottom:0; z-index:4; min-height:80px; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:18px 52px; border-top:1px solid var(--line); background:var(--paper); }
+    .chapter-nav { display:flex; gap:22px; }
+    .chapter { display:flex; align-items:center; gap:9px; border:0; padding:6px 0; color:var(--muted); background:transparent; font-size:12px; }
+    .chapter span { font:11px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace; }
+    .chapter[aria-current] { color:var(--ink); font-weight:750; }
+    .chapter[aria-current] span { color:var(--blue); }
+    .paging { display:flex; gap:19px; align-items:center; }
+    .counter { font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace; color:var(--muted); white-space:nowrap; }
+    .nav-button { width:40px; height:40px; border:1px solid var(--line); background:var(--white); color:var(--ink); border-radius:3px; font-size:20px; }
+    .nav-button:hover:enabled { background:#dfe7f5; }
+    .progress { height:3px; position:fixed; inset:auto 0 0; z-index:5; background:var(--line); }
+    .progress span { height:100%; display:block; width:33.333%; background:#bd4d35; transition:width 180ms ease; }
+    dialog { width:min(660px,calc(100% - 32px)); max-height:calc(100svh - 40px); padding:0; color:var(--ink); background:var(--paper); border:1px solid var(--line); border-radius:5px; }
+    dialog::backdrop { background:rgba(14,24,43,.68); }
+    .dialog-heading { display:flex; justify-content:space-between; align-items:center; padding:22px 26px; border-bottom:1px solid var(--line); }
+    .dialog-heading h2 { font-size:24px; letter-spacing:0; }
+    html[lang="zh-CN"] .dialog-heading h2 { font-size:24px; }
+    .close-dialog { width:36px; height:36px; border:1px solid var(--line); border-radius:3px; background:var(--white); color:var(--ink); font-size:24px; }
+    .dialog-body { padding:26px; }
+    .dialog-body>p { color:var(--muted); font-size:14px; line-height:1.7; }
+    .source-list { list-style:none; padding:0; margin:20px 0; }
+    .source-list li { border-top:1px solid var(--line); padding:18px 0; font-size:14px; line-height:1.6; }
+    .source-list a { color:var(--blue); font-weight:650; }
+    .source-list p { color:var(--muted); font-size:13px; margin-top:6px; }
+    .dialog-footnote { border-left:3px solid #bd4d35; padding-left:15px; }
+    @media (min-width:1600px) { .slide-inner { padding:65px 0; } }
+    @media (max-width:1100px) { .topbar { padding:0 32px; } .slide-inner { width:calc(100% - 64px); } .two-column { gap:42px; } h1 { font-size:56px; } h2 { font-size:38px; } html[lang="zh-CN"] h1 { font-size:54px; } html[lang="zh-CN"] h2 { font-size:38px; } .sheet { padding:18px 14px; grid-template-columns:30px 1fr 20px; } .sheet:last-child { padding-left:9px; } .footer { padding-left:32px; padding-right:32px; } th,td { padding:18px 14px; } }
+    @media (max-width:850px) { .topbar { height:68px; padding:0 25px; } .top-actions { gap:18px; } .deck,.slide { min-height:calc(100svh - 148px); } .slide-inner { width:calc(100% - 50px); padding:38px 0; } .two-column { grid-template-columns:1fr; gap:34px; } h1 { max-width:640px; font-size:50px; } h2 { max-width:560px; font-size:38px; } html[lang="zh-CN"] h1 { font-size:48px; } html[lang="zh-CN"] h2 { font-size:36px; } .title-layout { grid-template-columns:minmax(0,1fr) minmax(0,.9fr); gap:25px; } .title-layout h1 { font-size:44px; } html[lang="zh-CN"] .title-layout h1 { font-size:42px; } .storyboard { padding-left:0; padding-right:0; } .sheet { width:calc(100% - 14px); gap:8px; } .sheet:nth-of-type(2) { margin-left:14px; } .sheet strong { font-size:19px; } .sheet small { font-size:11px; } .eyebrow { margin-bottom:17px; } .lede { margin-top:18px; font-size:17px; } .role-panel { min-height:260px; } .slide-source { padding-top:20px; } .footer { padding:18px 25px; } .chapter-nav { gap:15px; } .role-description { max-width:650px; } .roles-layout .lede { max-width:650px; } }
+    @media (max-width:580px) { .topbar { height:66px; padding:0 21px; gap:10px; } .wordmark { font-size:10px; letter-spacing:.6px; gap:9px; } .mark { width:19px; height:21px; gap:2px; } .mark i { height:4px; } .mark i:nth-child(2) { width:15px; } .mark i:nth-child(3) { width:10px; } .top-actions { gap:14px; font-size:12px; } .source-button { font-size:12px; padding:7px 9px; } .slide-inner { width:calc(100% - 42px); padding:30px 0 32px; } .title-layout { grid-template-columns:1fr; gap:28px; } h1,.title-layout h1 { font-size:42px; line-height:1.08; letter-spacing:-1.5px; } html[lang="zh-CN"] h1,html[lang="zh-CN"] .title-layout h1 { font-size:40px; line-height:1.23; letter-spacing:-.5px; } h2 { font-size:34px; letter-spacing:-1px; } html[lang="zh-CN"] h2 { font-size:32px; } .eyebrow { font-size:10px; letter-spacing:1.2px; } .lede { font-size:16px; line-height:1.65; } .title-copy .small-note { margin-top:19px; font-size:11px; } .text-link { margin-top:20px; font-size:14px; } .storyboard { padding:15px 12px 20px; } .storyboard-label { margin-bottom:17px; margin-left:10px; font-size:10px; } .sheet { width:calc(100% - 14px); padding:15px 13px; grid-template-columns:28px 1fr 20px; } .sheet:last-child { padding-left:8px; } .sheet + .sheet { margin-top:14px; } .sheet strong { font-size:20px; } .sheet small { font-size:11px; } .footer { align-items:center; padding:17px 21px 20px; min-height:85px; gap:10px; } .chapter-nav { gap:14px; } .chapter { font-size:0; gap:0; padding:9px 0; } .chapter span { font-size:12px; } .chapter[aria-current] { border-bottom:2px solid var(--blue); } .paging { gap:12px; } .nav-button { width:38px; height:38px; } .roles-layout { gap:25px; } .section-number { margin-bottom:12px; } .role-tab strong { font-size:18px; } .role-tab { padding-top:0; } .role-tab span { font-size:11px; margin-bottom:8px; } .role-panel { min-height:310px; padding-top:23px; } .role-question { font-size:24px; } .role-description { font-size:15px; } .explanation p { font-size:13px; } .mini-node { font-size:11px; gap:6px; } .mini-node:not(:last-child)::after { margin-right:7px; } .slide-source { align-items:flex-start; margin-top:0; padding-top:18px; } .slide-source .small-note { max-width:220px; font-size:11px; } .inline-source { white-space:nowrap; font-size:11px; } .evidence-layout { gap:28px; } th,td { padding:17px 15px; font-size:13px; } th { font-size:10px; } .boundary { font-size:13px; margin-top:22px; } .reference-line { font-size:11px; } }
+    @media (max-width:580px) { body { padding-bottom:85px; } .deck,.slide { min-height:calc(100svh - 151px); } html[lang="zh-CN"] .role-panel { min-height:250px; } }
+    @media print { body { padding-bottom:0; } .topbar,.footer,.progress,dialog,.text-link,.source-button,.inline-source { display:none !important; } .slide { display:flex !important; min-height:100vh; break-after:page; } .role-panel[hidden] { display:block; } .role-panel { min-height:0; padding:12px 0; } .dark-slide { print-color-adjust:exact; -webkit-print-color-adjust:exact; } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { transition:none !important; scroll-behavior:auto !important; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="wordmark" href="https://github.com/DELONG-L/Research-Presentation-Skill" aria-label="仓库首页"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span><span>研究汇报</span></a>
+    <div class="top-actions"><nav class="language" aria-label="Language"><a href="../index.html" data-language lang="en" >EN</a><span aria-hidden="true">/</span><a href="index.html" data-language lang="zh-CN" aria-current="page">中文</a></nav><button class="source-button" type="button" data-sources aria-label="来源">来源 ↗</button></div>
+  </header>
+  <main class="deck" id="presentation">
+    <section class="slide dark-slide is-active" id="slide-1" data-slide aria-labelledby="slide-1-title"><div class="slide-inner two-column title-layout">
+      <div class="title-copy"><p class="eyebrow">互动演示示例</p><h1 id="slide-1-title">从证据出发，讲清研究故事</h1><p class="lede">从研究问题出发，解释方法机制，用证据支撑结论。</p><button class="text-link" type="button" data-start aria-label="开始体验">开始体验<span aria-hidden="true">→</span></button><p class="small-note">以技能公开说明为来源的软件示例，不包含实验研究结果。</p></div>
+      <div class="storyboard" aria-label="一个研究故事"><p class="storyboard-label">一个研究故事</p><a class="sheet" href="#slide-2" data-role-jump="0" aria-label="问题: 为什么研究这个问题？"><span class="sheet-number">01</span><span><strong>问题</strong><small>为什么研究这个问题？</small></span><span class="sheet-arrow" aria-hidden="true">↗</span></a><a class="sheet" href="#slide-2" data-role-jump="1" aria-label="机制: 方法如何起作用？"><span class="sheet-number">02</span><span><strong>机制</strong><small>方法如何起作用？</small></span><span class="sheet-arrow" aria-hidden="true">↗</span></a><a class="sheet" href="#slide-2" data-role-jump="2" aria-label="证据: 证据能说明什么？"><span class="sheet-number">03</span><span><strong>证据</strong><small>证据能说明什么？</small></span><span class="sheet-arrow" aria-hidden="true">↗</span></a></div>
+    </div></section>
+    <section class="slide" id="slide-2" data-slide aria-labelledby="slide-2-title"><div class="slide-inner">
+      <div class="two-column roles-layout"><div><p class="eyebrow">组织论证</p><span class="section-number">02 / 03</span><h2 id="slide-2-title">每页一个论证任务</h2><p class="lede">切换下方的论证任务，看看它如何推进研究故事。</p><div class="mini-map" aria-hidden="true"><span class="mini-node active">问题</span><span class="mini-node ">机制</span><span class="mini-node ">证据</span></div></div>
+      <div><div class="role-tabs" role="tablist" aria-label="论证任务"><button class="role-tab" role="tab" id="role-0" aria-controls="role-panel-0" aria-selected="true" tabindex="0" type="button" aria-label="问题"><span>01</span><strong>问题</strong></button><button class="role-tab" role="tab" id="role-1" aria-controls="role-panel-1" aria-selected="false" tabindex="-1" type="button" aria-label="机制"><span>02</span><strong>机制</strong></button><button class="role-tab" role="tab" id="role-2" aria-controls="role-panel-2" aria-selected="false" tabindex="-1" type="button" aria-label="证据"><span>03</span><strong>证据</strong></button></div><div class="role-panel" id="role-panel-0" role="tabpanel" aria-labelledby="role-0" tabindex="0" ><h3 class="role-question">什么让这个问题值得研究？</h3><p class="role-description">介绍研究问题、具体场景与适用边界。先让听众理解问题为何重要，再引入方法。</p><div class="explanation"><p><strong>听众应该带走什么</strong>明确的问题，以及这个问题在什么条件下成立。</p></div></div><div class="role-panel" id="role-panel-1" role="tabpanel" aria-labelledby="role-1" tabindex="0" hidden><h3 class="role-question">方法如何支撑它的结论？</h3><p class="role-description">连接输入、设计选择与声称实现的性质。把推理过程讲清楚，不能只给出一个方法名称。</p><div class="explanation"><p><strong>听众应该带走什么</strong>从设计选择到所声称性质的清楚解释。</p></div></div><div class="role-panel" id="role-panel-2" role="tabpanel" aria-labelledby="role-2" tabindex="0" hidden><h3 class="role-question">证据究竟能够说明什么？</h3><p class="role-description">展示支持结论的观察结果。在结果附近保留不确定性、前提和局限。</p><div class="explanation"><p><strong>听众应该带走什么</strong>与来源一致、没有超出证据范围的结论。</p></div></div></div></div>
+      <div class="slide-source"><p class="small-note">这里介绍工作流原则，不是科研结果。</p><button class="inline-source" data-sources type="button" aria-label="查看来源 ↗">查看来源 ↗</button></div>
+    </div></section>
+    <section class="slide" id="slide-3" data-slide aria-labelledby="slide-3-title"><div class="slide-inner two-column evidence-layout">
+      <div><p class="eyebrow">来源与范围</p><span class="section-number">03 / 03</span><h2 id="slide-3-title">让每个结论都能找到来源</h2><p class="lede">把依据和适用范围放在一起，才能准确理解一项结论。</p></div>
+      <div><div class="table-wrap" role="region" aria-label="能力、来源与适用范围，可左右滚动" tabindex="0"><table><thead><tr><th scope="col">能力</th><th scope="col">主要来源</th><th scope="col">适用范围</th></tr></thead><tbody><tr><td>草稿叙事</td><td><a href="https://github.com/DELONG-L/Research-Presentation-Skill/blob/main/research-presentation/SKILL.md#build-workflow" target="_blank" rel="noopener noreferrer">技能说明 ↗</a></td><td>常规交付</td></tr><tr><td>离线 HTML</td><td><a href="https://github.com/DELONG-L/Research-Presentation-Skill/blob/main/research-presentation/assets/html-deck/index.html" target="_blank" rel="noopener noreferrer">演示骨架 ↗</a></td><td>本地资源</td></tr><tr><td>确认后的叙事</td><td><a href="https://github.com/DELONG-L/Research-Presentation-Skill/blob/main/research-presentation/references/narrative-gate.md" target="_blank" rel="noopener noreferrer">叙事确认流程 ↗</a></td><td>明确确认</td></tr></tbody></table></div><p class="table-cue">窄屏下可左右滑动表格 ↔</p><p class="boundary"><strong>完整的草稿可以用于常规交付。</strong>项目模式可以先交付完整的草稿叙事。只有用户实际确认后，叙事才会冻结。</p><div class="reference-line"><a href="https://github.com/DELONG-L/Research-Presentation-Skill/blob/main/research-presentation/SKILL.md#build-workflow" target="_blank" rel="noopener noreferrer">技能说明 ↗</a><a href="https://github.com/DELONG-L/Research-Presentation-Skill/blob/main/examples/demo/zh/presentation-manifest.yml" target="_blank" rel="noopener noreferrer">结论来源清单 ↗</a></div></div>
+    </div></section>
+  </main>
+  <footer class="footer"><nav class="chapter-nav" aria-label="幻灯片导航"><button type="button" class="chapter" data-go="0" aria-label="1. 研究故事"><span>01</span>研究故事</button><button type="button" class="chapter" data-go="1" aria-label="2. 论证任务"><span>02</span>论证任务</button><button type="button" class="chapter" data-go="2" aria-label="3. 来源与范围"><span>03</span>来源与范围</button></nav><div class="paging"><span class="counter" id="counter" role="status" aria-live="polite">01 / 03</span><button class="nav-button" id="previous" type="button" aria-label="上一页" title="上一页">←</button><button class="nav-button" id="next" type="button" aria-label="下一页" title="下一页">→</button></div></footer>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+  <dialog id="sources" aria-labelledby="source-title"><div class="dialog-heading"><h2 id="source-title">结论背后的来源</h2><button class="close-dialog" id="close-sources" type="button" aria-label="关闭来源" title="关闭来源">×</button></div><div class="dialog-body"><p>本示例以技能本身为来源。以下链接打开公开仓库中的原始文件。</p><ol class="source-list"><li><a href="https://github.com/DELONG-L/Research-Presentation-Skill/blob/main/research-presentation/SKILL.md#build-workflow" target="_blank" rel="noopener noreferrer">[1] 构建流程 ↗</a><p>每页承担一个论证任务。常规交付可以使用草稿叙事。</p></li><li><a href="https://github.com/DELONG-L/Research-Presentation-Skill/blob/main/research-presentation/assets/html-deck/index.html" target="_blank" rel="noopener noreferrer">[2] HTML 演示骨架 ↗</a><p>仓库中的骨架使用本地运行资源。</p></li><li><a href="https://github.com/DELONG-L/Research-Presentation-Skill/blob/main/research-presentation/references/narrative-gate.md" target="_blank" rel="noopener noreferrer">[3] 叙事确认流程 ↗</a><p>只有用户明确确认后，叙事才会冻结。</p></li></ol><p class="dialog-footnote">这些来源说明软件工作流，不构成科研效果的证据。</p></div></dialog>
+  <script>
+    (() => {
+      const slides = [...document.querySelectorAll('[data-slide]')];
+      const chapters = [...document.querySelectorAll('[data-go]')];
+      const tabs = [...document.querySelectorAll('[role="tab"]')];
+      const panels = [...document.querySelectorAll('[role="tabpanel"]')];
+      const sourceDialog = document.getElementById('sources');
+      const previous = document.getElementById('previous');
+      const next = document.getElementById('next');
+      let current = 0;
+      const render = (requested, updateHash = true) => {
+        current = Math.max(0, Math.min(slides.length - 1, requested));
+        slides.forEach((slide,index) => { slide.classList.toggle('is-active', index === current); slide.inert = index !== current; });
+        chapters.forEach((button,index) => { if (index === current) button.setAttribute('aria-current','step'); else button.removeAttribute('aria-current'); });
+        document.getElementById('counter').textContent = `${String(current + 1).padStart(2,'0')} / ${String(slides.length).padStart(2,'0')}`;
+        document.getElementById('progress-bar').style.width = `${(current + 1) / slides.length * 100}%`;
+        previous.disabled = current === 0;
+        next.disabled = current === slides.length - 1;
+        document.querySelectorAll('[data-language]').forEach(link => { link.hash = `slide-${current + 1}`; });
+        if (updateHash) history.replaceState(null,'',`#slide-${current + 1}`);
+        window.scrollTo(0,0);
+      };
+      const selectRole = (index, focus = false) => {
+        tabs.forEach((tab,i) => { tab.setAttribute('aria-selected',String(index === i)); tab.tabIndex = index === i ? 0 : -1; });
+        panels.forEach((panel,i) => { panel.hidden = index !== i; });
+        document.querySelectorAll('.mini-node').forEach((node,i) => node.classList.toggle('active',index === i));
+        if (focus) tabs[index].focus();
+      };
+      tabs.forEach((tab,index) => {
+        tab.addEventListener('click',() => selectRole(index));
+        tab.addEventListener('keydown',event => {
+          let target;
+          if (event.key === 'ArrowRight') target = (index + 1) % tabs.length;
+          if (event.key === 'ArrowLeft') target = (index + tabs.length - 1) % tabs.length;
+          if (event.key === 'Home') target = 0;
+          if (event.key === 'End') target = tabs.length - 1;
+          if (target !== undefined) { event.preventDefault(); event.stopPropagation(); selectRole(target,true); }
+        });
+      });
+      document.querySelectorAll('[data-role-jump]').forEach(link => link.addEventListener('click',event => { event.preventDefault(); render(1); selectRole(Number(link.dataset.roleJump)); }));
+      chapters.forEach(button => button.addEventListener('click',() => render(Number(button.dataset.go))));
+      document.querySelectorAll('[data-start]').forEach(button => button.addEventListener('click',() => render(1)));
+      previous.addEventListener('click',() => render(current - 1));
+      next.addEventListener('click',() => render(current + 1));
+      document.querySelectorAll('[data-sources]').forEach(button => button.addEventListener('click',() => sourceDialog.showModal()));
+      document.getElementById('close-sources').addEventListener('click',() => sourceDialog.close());
+      sourceDialog.addEventListener('click',event => { if (event.target === sourceDialog) { const r=sourceDialog.getBoundingClientRect(); if (event.clientX<r.left || event.clientX>r.right || event.clientY<r.top || event.clientY>r.bottom) sourceDialog.close(); } });
+      document.addEventListener('keydown',event => {
+        if (sourceDialog.open || event.altKey || event.ctrlKey || event.metaKey || event.target.closest('input,textarea,select,[role="tab"],[contenteditable="true"],.table-wrap')) return;
+        if (event.key === ' ' && event.target.closest('button,a')) return;
+        let target;
+        if (['ArrowRight','PageDown',' '].includes(event.key)) target=current+1;
+        if (['ArrowLeft','PageUp'].includes(event.key)) target=current-1;
+        if (event.key === 'Home') target=0;
+        if (event.key === 'End') target=slides.length-1;
+        if (target !== undefined) { event.preventDefault(); render(target); }
+      });
+      let touchStart = null;
+      document.querySelector('.deck').addEventListener('touchstart',event => { if (event.target.closest('button,a,.table-wrap')) return; touchStart=[event.changedTouches[0].clientX,event.changedTouches[0].clientY]; },{passive:true});
+      document.querySelector('.deck').addEventListener('touchend',event => { if (!touchStart) return; const dx=event.changedTouches[0].clientX-touchStart[0]; const dy=event.changedTouches[0].clientY-touchStart[1]; if (Math.abs(dx)>65 && Math.abs(dx)>Math.abs(dy)*1.5) render(current+(dx<0?1:-1)); touchStart=null; },{passive:true});
+      document.querySelector('.deck').addEventListener('touchcancel',() => { touchStart=null; });
+      const readHash = () => { const match=location.hash.match(/^#slide-([1-3])$/); render(match?Number(match[1])-1:0,false); };
+      window.addEventListener('hashchange',readHash);
+      readHash(); selectRole(0);
+    })();
+  </script>
+</body>
+</html>
