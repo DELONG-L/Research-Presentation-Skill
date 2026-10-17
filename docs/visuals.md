@@ -6,6 +6,10 @@ Midnight navy frames the research story, ice-white carries the slides, blue mark
 
 深海军蓝承载研究故事，冰白呈现投影片，蓝色表示导航与选中状态，珊瑚橙强调证据边界。README 封面与互动示例使用同一套颜色语义。技能生成的具体研究汇报仍应按主题选择适合的配色。
 
+The covers use regular upright book-serif typography in English and Songti in Chinese. The title block has relaxed spacing within the original storyboard composition.
+
+封面英文采用规整的直立书籍衬线体，中文采用宋体；在原有分镜构图内，以舒展的标题间距建立层次。
+
 | Asset / 资源 | Source and purpose / 来源与用途 |
 |---|---|
 | [readme-cover-en.png](previews/readme-cover-en.png) | English conceptual storyboard, created with built-in ImageGen / 内置 ImageGen 生成的英文概念分镜 |
