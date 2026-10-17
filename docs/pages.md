@@ -6,9 +6,9 @@ The [English demo](https://delong-l.github.io/Research-Presentation-Skill/) and 
 
 [英文演示](https://delong-l.github.io/Research-Presentation-Skill/)与[中文演示](https://delong-l.github.io/Research-Presentation-Skill/zh/)直接使用 `examples/demo/` 中可独立运行的 HTML 文件。切换语言时保留当前页。
 
-The [Pages workflow](../.github/workflows/pages.yml) validates both examples, packages them with [build_pages.py](../scripts/build_pages.py), and deploys the artifact. The artifact contains only `index.html`, `zh/index.html`, `LICENSE`, and `.nojekyll`. Repository documentation, source records, and skill instructions remain on GitHub and are linked from the demos.
+The [Pages workflow](../.github/workflows/pages.yml) validates both examples, packages them with [build_pages.py](../scripts/build_pages.py), and deploys the artifact. The artifact contains only `index.html`, `zh/index.html`, and `LICENSE`. Repository documentation, source records, and skill instructions remain on GitHub and are linked from the demos.
 
-[Pages 工作流](../.github/workflows/pages.yml)先验证两版示例，再通过 [build_pages.py](../scripts/build_pages.py) 打包并部署。发布包只包含 `index.html`、`zh/index.html`、`LICENSE` 和 `.nojekyll`。文档、来源记录与技能说明保留在 GitHub，通过演示中的链接访问。
+[Pages 工作流](../.github/workflows/pages.yml)先验证两版示例，再通过 [build_pages.py](../scripts/build_pages.py) 打包并部署。发布包只包含 `index.html`、`zh/index.html` 和 `LICENSE`。文档、来源记录与技能说明保留在 GitHub，通过演示中的链接访问。
 
 To package the site locally, use an empty output directory:
 

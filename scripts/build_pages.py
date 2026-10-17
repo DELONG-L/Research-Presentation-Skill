@@ -22,7 +22,6 @@ def build(destination: Path) -> None:
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source, target)
     shutil.copyfile(root / "LICENSE", destination / "LICENSE")
-    (destination / ".nojekyll").touch()
     print(f"Packaged English and Chinese examples in {destination}")
 
 
